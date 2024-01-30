@@ -96,7 +96,7 @@ public class CampaignEventListener extends BaseCampaignEventListener {
 
             if (person.hasTag(Strings.NO_CAPTURE_TAG)) {
                 log.info("TNP - Person has blocking capture tag.");
-                return false;
+                return true;
             }
 
             if (person.hasTag(Strings.FORCE_CAPTURE_TAG)) {
@@ -106,11 +106,11 @@ public class CampaignEventListener extends BaseCampaignEventListener {
 
             if (Global.getSector().getImportantPeople().getPerson(person.getId()) != null) {
                 log.info("TNP - Person was important.");
-                return false;
+                return true;
             }
 
             if (person.isAICore()) {
-                return false;
+                return true;
             }
 
             return config != null && ((isCommander && config.getCapturesCommanders()) || config.getCapturesOfficers());
